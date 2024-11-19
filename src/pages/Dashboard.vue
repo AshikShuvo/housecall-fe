@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import UnicornCard from '@/components/UnicornCard.vue';
+</script>
 <template>
     <div id="dashboard">
         <router-view />
@@ -8,6 +10,8 @@
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
-        <div>main content</div>
+        <UnicornCard />
+        <UnicornCard />
+        <UnicornCard />
     </div>
 </template>
