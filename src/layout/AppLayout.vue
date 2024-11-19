@@ -3,6 +3,7 @@ import { useLayout } from '@/layout/composables/layout';
 import { computed, ref, watch } from 'vue';
 import AppSidebar from './AppSidebar.vue';
 import AppTopbar from './AppTopbar.vue';
+import Preloader from '@/components/Preloader.vue';
 
 const { layoutConfig, layoutState, isSidebarActive, resetMenu } = useLayout();
 
@@ -53,6 +54,7 @@ function isOutsideClicked(event) {
 </script>
 
 <template>
+    <Preloader />
     <div class="layout-wrapper" :class="containerClass">
         <app-topbar></app-topbar>
         <app-sidebar></app-sidebar>
