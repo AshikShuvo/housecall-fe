@@ -11,7 +11,14 @@ const router = createRouter({
                 {
                     path: '/',
                     name: 'dashboard',
-                    component: () => import('@/pages/Dashboard.vue')
+                    component: () => import('@/pages/Dashboard.vue'),
+                    children: [
+                        {
+                            path: '/add-unicorn',
+                            name: 'Unicorn-add',
+                            component: () => import('@/pages/AddEditUnicorn.vue')
+                        }
+                    ]
                 }
             ]
         }
