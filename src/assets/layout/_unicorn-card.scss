@@ -1,0 +1,16 @@
+
+.card{
+    &.unicorn-card{
+        border-radius: 12px 0px 0px 12px !important;
+        border: none !important;
+        &.red-border{
+            border-left: 6px solid red!important;
+        }
+        &.green-border{
+            border-left: 6px solid green!important;
+        }
+        &.blue-border{
+            border-left: 6px solid blue!important;
+        }
+    }
+}

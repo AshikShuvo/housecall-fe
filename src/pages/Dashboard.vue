@@ -5,7 +5,7 @@ import UnicornCard from '@/components/UnicornCard.vue';
     <div id="dashboard">
         <router-view />
         <div class="card flex flex-row justify-between align-middle">
-            <p class="!text-xl font-bold align-middle">Welcome John</p>
+            <p class="title">Welcome John</p>
             <RouterLink to="/add-unicorn">
                 <Button> Create Unicorn</Button>
             </RouterLink>
@@ -13,5 +13,18 @@ import UnicornCard from '@/components/UnicornCard.vue';
         <UnicornCard />
         <UnicornCard />
         <UnicornCard />
+        <UnicornCard />
+        <UnicornCard />
+        <Paginator
+            :template="{
+                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
+                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'
+            }"
+            :rows="10"
+            :totalRecords="120"
+        >
+        </Paginator>
     </div>
 </template>
