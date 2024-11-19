@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useSiteStore } from '@/stores/site.store';
-// import {toast} from "@/hooks/use-toast.ts";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_BASE_URL
