@@ -13,6 +13,10 @@ const handleDelete = (id) => {
 onMounted(() => {
     unicornStore.getUnicorns();
 });
+const getVariant = (index) => {
+    const colors = ['red', 'green', 'blue'];
+    return colors[index % colors.length];
+};
 </script>
 <template>
     <div id="dashboard">
@@ -23,7 +27,7 @@ onMounted(() => {
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
-        <UnicornCard v-for="(unicorn, index) in paginatedUnicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" @delete-unicorn="handleDelete" />
+        <UnicornCard v-for="(unicorn, index) in paginatedUnicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" @delete-unicorn="handleDelete" :variant="getVariant(index)" />
         <PaginatonComponent />
     </div>
 </template>
