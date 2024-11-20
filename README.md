@@ -40,14 +40,15 @@ VITE_API_KEY= <your crudcrud generated unique id>
 don't change the value of `VITE_API_BASEURL` 
 ```
 ## assumptions or decisions
-I have used [sakai dashboard](https://github.com/primefaces/sakai-vue) template and [prime vue](https://primevue.org/) as component library.
+- I have used [sakai dashboard](https://github.com/primefaces/sakai-vue) template and [prime vue](https://primevue.org/) as component library.
+- Could not export baby face, old face and unicorn icon from figma. used brand icon instead of them. 
 
 ## Completed bonus challenges
 - State Management used pinia <br>
 - Implemented comprehensive error handling for API calls and user interactions.<br>
 - Added client-side validation for all forms (e.g., age, name etc) used [vee-validate](https://vee-validate.logaretm.com/v4/) and yup for validation schema
 
-## Changes and solution
+## Challenges and solution
 - managed loading state by the beautiful collaboration of pinia store and axios interceptor by composable
 - mange pagination and sorting used pinia state
 - manage modals by individual route.
