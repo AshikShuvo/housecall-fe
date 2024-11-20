@@ -19,6 +19,29 @@ const colorByVariant = computed(() => {
             return 'red-border';
     }
 });
+// Age 0 to 8 > Baby Unicorn
+// Age 9 to 25 > Mature Unicorn
+// Age 26 and above > Old Unicorn
+const unicornIcon = computed(() => {
+    if (props.unicorn.age <= 8) {
+        return {
+            label: 'Baby Unicorn',
+            colorClass: 'baby',
+            icon: 'pi pi-linkedin'
+        };
+    } else if (props.unicorn.age >= 9 && props.unicorn.age <= 25) {
+        return {
+            label: 'Mature Unicorn',
+            colorClass: 'mature',
+            icon: 'pi pi-amazon'
+        };
+    }
+    return {
+        label: 'Old Unicorn',
+        colorClass: 'old',
+        icon: 'pi pi-microsoft'
+    };
+});
 </script>
 
 <template>
@@ -43,7 +66,7 @@ const colorByVariant = computed(() => {
                 </div>
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">Status</p>
-                    <p class="bold-inf0">Baby</p>
+                    <Chip :icon="unicornIcon.icon" :class="unicornIcon.colorClass" :label="unicornIcon.label" />
                 </div>
             </div>
             <div class="flex justify-center align-middle gap-2">

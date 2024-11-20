@@ -23,3 +23,24 @@
         top: 100px;
     }
 }
+.p-chip{
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+    &.baby{
+        background: rgba(254, 243, 199, 1) !important;
+        color: rgba(146, 64, 14, 1) !important;
+    }
+    &.mature{
+        background: rgba(46, 125, 50, 0.12) !important;
+        color: rgba(46, 125, 50, 1) !important;
+    }
+    &.old{
+        background: rgba(92, 51, 207, 0.12) !important;
+        color: rgba(92, 51, 207, 1) !important;
+    }
+}
