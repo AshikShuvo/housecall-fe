@@ -1,5 +1,14 @@
 <script setup>
 import UnicornCard from '@/components/UnicornCard.vue';
+import { useUnicornStore } from '@/stores/unicorun.store';
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+
+const unicornStore = useUnicornStore();
+const { unicorns } = storeToRefs(unicornStore);
+onMounted(() => {
+    unicornStore.getUnicorns();
+});
 </script>
 <template>
     <div id="dashboard">
@@ -10,11 +19,7 @@ import UnicornCard from '@/components/UnicornCard.vue';
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
+        <UnicornCard v-for="(unicorn, index) in unicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" />
         <Paginator
             :template="{
                 default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'

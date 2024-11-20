@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia';
 
 export const useSiteStore = defineStore('siteStore', {
-    state: () => ({
-        globalLoadingCount: 0
-    }),
+    state: () => {
+        return {
+            globalLoadingCount: 0
+        };
+    },
     getters: {
         isGlobalLoading: (state) => {
             return state.globalLoadingCount > 0;
@@ -11,7 +13,11 @@ export const useSiteStore = defineStore('siteStore', {
     },
     actions: {
         setGlobalLoading(isLoading) {
-            this.state.globalLoadingCount = isLoading ? this.state.globalLoadingCount + 1 : Math.max(0, this.state.globalLoadingCount - 1);
+            if (isLoading) {
+                this.globalLoadingCount++;
+            } else {
+                this.globalLoadingCount = Math.max(0, this.globalLoadingCount - 1);
+            }
         }
     }
 });

@@ -2,7 +2,9 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    variant: { type: String, default: 'red' }
+    variant: { type: String, default: 'red' },
+    unicorn: { type: Object, default: null },
+    index: { type: Number, default: 0 }
 });
 const colorByVariant = computed(() => {
     switch (props.variant) {
@@ -24,19 +26,19 @@ const colorByVariant = computed(() => {
             <div class="flex-grow flex justify-start align-middle gap-8">
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">No</p>
-                    <p class="bold-inf0">1</p>
+                    <p class="bold-inf0">{{ index + 1 }}</p>
                 </div>
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">Doctor Name</p>
-                    <p class="bold-inf0">Ashik Ahmmed</p>
+                    <p class="bold-inf0">{{ unicorn?.name }}</p>
                 </div>
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">age</p>
-                    <p class="bold-inf0">266</p>
+                    <p class="bold-inf0">{{ unicorn?.age }}</p>
                 </div>
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">Color</p>
-                    <p class="bold-inf0">black</p>
+                    <p class="bold-inf0">{{ unicorn?.colour }}</p>
                 </div>
                 <div class="flex flex-col justify-start align-middle gap-2">
                     <p class="muted-header">Status</p>
