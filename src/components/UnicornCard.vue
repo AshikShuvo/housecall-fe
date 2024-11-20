@@ -6,7 +6,7 @@ const props = defineProps({
     unicorn: { type: Object, default: null },
     index: { type: Number, default: 0 }
 });
-const emit = defineEmits(['delete-unicorn']);
+const emit = defineEmits(['delete-unicorn', 'edit-unicorn']);
 const colorByVariant = computed(() => {
     switch (props.variant) {
         case 'red':
@@ -47,7 +47,7 @@ const colorByVariant = computed(() => {
                 </div>
             </div>
             <div class="flex justify-center align-middle gap-2">
-                <Button outlined size="sm">Edit</Button>
+                <Button outlined size="sm" @click="emit('edit-unicorn', unicorn._id)">Edit</Button>
                 <Button icon="pi pi-trash" aria-label="delete" severity="danger" @click="emit('delete-unicorn', unicorn._id)" />
             </div>
         </div>

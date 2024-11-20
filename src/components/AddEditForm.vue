@@ -4,7 +4,7 @@ import { object, string } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useRoute } from 'vue-router';
 
-const emit = defineEmits(['create-event']);
+const emit = defineEmits(['create-event', 'edit-event']);
 const props = defineProps({
     closeModal: {
         type: Function,
@@ -31,9 +31,11 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
 const [name, nameAttrs] = defineField('name');
 const [age, ageAttrs] = defineField('age');
 const [colour, colourAttrs] = defineField('colour');
-const emitCreate = handleSubmit((value) => {
-    if(route.name === 'Unicorn-add'){
+const emitHandler = handleSubmit((value) => {
+    if (route.name === 'Unicorn-add') {
         emit('create-event', value);
+    } else {
+        emit('edit-event', value);
     }
 });
 const resetAndClose = () => {
@@ -60,7 +62,7 @@ const resetAndClose = () => {
         </div>
         <div class="w-full flex justify-end align-middle gap-2">
             <Button outlined @click="resetAndClose">Cancel</Button>
-            <Button @click="emitCreate">Create</Button>
+            <Button @click="emitHandler">Create</Button>
         </div>
     </div>
 </template>

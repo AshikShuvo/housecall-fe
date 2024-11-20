@@ -20,14 +20,13 @@ export const useUnicornStore = defineStore('unicornStore', {
             }
         },
         async proceedToUpdateUnicorn(payload) {
-            const id = payload._id;
-            delete payload._id;
-            const updateUnicorn = await updateUnicorn(payload, id);
-            if (updateUnicorn) {
-                let target = this.unicorns.find((u) => u._id === updateUnicorn._id);
-                if (target) {
-                    target = updateUnicorn;
-                }
+            try {
+                const id = payload._id;
+                delete payload._id;
+                await updateUnicorn(payload, id);
+                this.getUnicorns();
+            } catch (error) {
+                console.log(error);
             }
         },
         async proceedToDeleteUnicorn(id) {
