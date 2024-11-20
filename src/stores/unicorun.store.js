@@ -44,7 +44,6 @@ export const useUnicornStore = defineStore('unicornStore', {
         paginatedUnicorns: (state) => {
             const start = state.currentPage * state.itemsPerPage;
             const end = start + state.itemsPerPage;
-            console.log({ start, end, currentPage: state.currentPage });
             return state.unicorns.slice(start, end);
         }
     }

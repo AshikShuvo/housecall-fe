@@ -10,12 +10,6 @@ const { paginatedUnicorns } = storeToRefs(unicornStore);
 onMounted(() => {
     unicornStore.getUnicorns();
 });
-watch(
-    () => paginatedUnicorns.value,
-    () => {
-        console.log(paginatedUnicorns.value);
-    }
-);
 </script>
 <template>
     <div id="dashboard">
