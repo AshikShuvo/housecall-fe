@@ -47,6 +47,7 @@ don't change the value of `VITE_API_BASEURL`
 - State Management used pinia <br>
 - Implemented comprehensive error handling for API calls and user interactions.<br>
 - Added client-side validation for all forms (e.g., age, name etc) used [vee-validate](https://vee-validate.logaretm.com/v4/) and yup for validation schema
+- deployed on netlify [live link](https://housecall-fe-assessment.netlify.app/)
 
 ## Challenges and solution
 - managed loading state by the beautiful collaboration of pinia store and axios interceptor by composable
