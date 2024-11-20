@@ -12,9 +12,12 @@ export const fetchAllUnicorns = async () => {
 export const createUnicorn = async (payload) => {
     const { api } = useApi();
     try {
-        return await api.post('unicorns', payload);
+        const data = await api.post('unicorns', payload);
+        console.log(data);
+        return data;
     } catch (error) {
         console.log(error);
+        return null;
     }
 };
 

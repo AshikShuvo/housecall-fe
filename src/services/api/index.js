@@ -21,7 +21,7 @@ export const useApi = () => {
     api.interceptors.response.use(
         (response) => {
             siteStore.setGlobalLoading(false);
-            return response.data;
+            return response.data ?? response;
         },
         (error) => {
             siteStore.setGlobalLoading(false);
