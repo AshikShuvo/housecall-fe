@@ -31,9 +31,11 @@ export const useUnicornStore = defineStore('unicornStore', {
             }
         },
         async proceedToDeleteUnicorn(id) {
-            const unicorn = await deleteUnicorn(id);
-            if (unicorn) {
-                this.unicorns.splice(this.unicorns.indexOf(unicorn), 1);
+            try {
+                await deleteUnicorn(id);
+                this.getUnicorns();
+            } catch (error) {
+                console.error(error);
             }
         }
     },
