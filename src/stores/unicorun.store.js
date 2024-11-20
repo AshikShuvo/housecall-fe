@@ -4,7 +4,9 @@ import { createUnicorn, deleteUnicorn, fetchAllUnicorns, updateUnicorn } from '@
 export const useUnicornStore = defineStore('unicornStore', {
     state: () => {
         return {
-            unicorns: []
+            unicorns: [],
+            itemsPerPage: 5,
+            currentPage: 0
         };
     },
     actions: {
@@ -33,6 +35,17 @@ export const useUnicornStore = defineStore('unicornStore', {
             if (unicorn) {
                 this.unicorns.splice(this.unicorns.indexOf(unicorn), 1);
             }
+        }
+    },
+    getters: {
+        totalUnicorns: (state) => {
+            return state.unicorns.length;
+        },
+        paginatedUnicorns: (state) => {
+            const start = state.currentPage * state.itemsPerPage;
+            const end = start + state.itemsPerPage;
+            console.log({ start, end, currentPage: state.currentPage });
+            return state.unicorns.slice(start, end);
         }
     }
 });

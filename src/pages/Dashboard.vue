@@ -1,14 +1,21 @@
 <script setup>
 import UnicornCard from '@/components/UnicornCard.vue';
 import { useUnicornStore } from '@/stores/unicorun.store';
-import { onMounted } from 'vue';
+import { onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
+import PaginatonComponent from '@/components/PaginatonComponent.vue';
 
 const unicornStore = useUnicornStore();
-const { unicorns } = storeToRefs(unicornStore);
+const { paginatedUnicorns } = storeToRefs(unicornStore);
 onMounted(() => {
     unicornStore.getUnicorns();
 });
+watch(
+    () => paginatedUnicorns.value,
+    () => {
+        console.log(paginatedUnicorns.value);
+    }
+);
 </script>
 <template>
     <div id="dashboard">
@@ -19,14 +26,7 @@ onMounted(() => {
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
-        <UnicornCard v-for="(unicorn, index) in unicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" />
-        <Paginator
-            :template="{
-                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'
-            }"
-            :rows="5"
-            :totalRecords="120"
-        >
-        </Paginator>
+        <UnicornCard v-for="(unicorn, index) in paginatedUnicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" />
+        <PaginatonComponent />
     </div>
 </template>
