@@ -22,10 +22,12 @@ const toggleModal = computed({
         return true;
     },
     set() {
+        props.clearEditState();
         router.back();
     }
 });
 const closeModal = () => {
+    props.clearEditState();
     router.back();
 };
 const handleCreate = (payload) => {

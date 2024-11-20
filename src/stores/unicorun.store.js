@@ -6,7 +6,8 @@ export const useUnicornStore = defineStore('unicornStore', {
         return {
             unicorns: [],
             itemsPerPage: 5,
-            currentPage: 0
+            currentPage: 0,
+            selectedSort: ''
         };
     },
     actions: {
@@ -43,9 +44,21 @@ export const useUnicornStore = defineStore('unicornStore', {
             return state.unicorns.length;
         },
         paginatedUnicorns: (state) => {
+            // Copy unicorns to avoid mutating the state
+            let sortedUnicorns = [...state.unicorns];
+            // Apply sorting based on selectedSort
+            if (state.selectedSort === 'ascending') {
+                sortedUnicorns.sort((a, b) => a.age - b.age);
+            } else if (state.selectedSort === 'descending') {
+                sortedUnicorns.sort((a, b) => b.age - a.age);
+            } else if (state.selectedSort === 'name') {
+                sortedUnicorns.sort((a, b) => a.name.localeCompare(b.name));
+            }
+
+            // Apply pagination
             const start = state.currentPage * state.itemsPerPage;
             const end = start + state.itemsPerPage;
-            return state.unicorns.slice(start, end);
+            return sortedUnicorns.slice(start, end);
         }
     }
 });

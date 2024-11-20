@@ -5,6 +5,7 @@ import { onMounted, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 import PaginatonComponent from '@/components/PaginatonComponent.vue';
 import { useRouter } from 'vue-router';
+import SortBox from '@/components/SortBox.vue';
 
 const router = useRouter();
 const unicornToEdit = ref(null);
@@ -37,6 +38,7 @@ const clearEditState = () => {
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
+        <SortBox v-if="paginatedUnicorns.length > 0" />
         <UnicornCard v-for="(unicorn, index) in paginatedUnicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" @delete-unicorn="handleDelete" @edit-unicorn="handleEditRoute" :variant="getVariant(index)" />
         <PaginatonComponent />
     </div>

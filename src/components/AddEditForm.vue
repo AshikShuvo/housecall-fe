@@ -3,6 +3,7 @@ import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useRoute } from 'vue-router';
+import { computed } from 'vue';
 
 const emit = defineEmits(['create-event', 'edit-event']);
 const props = defineProps({
@@ -42,6 +43,12 @@ const resetAndClose = () => {
     resetForm();
     props.closeModal();
 };
+const submitButtonTitle = computed(() => {
+    if (route.name === 'Unicorn-add') {
+        return 'create';
+    }
+    return 'Edit';
+});
 </script>
 <template>
     <div class="card flex flex-col gap-4">
@@ -62,7 +69,7 @@ const resetAndClose = () => {
         </div>
         <div class="w-full flex justify-end align-middle gap-2">
             <Button outlined @click="resetAndClose">Cancel</Button>
-            <Button @click="emitHandler">Create</Button>
+            <Button @click="emitHandler">{{ submitButtonTitle }}</Button>
         </div>
     </div>
 </template>
