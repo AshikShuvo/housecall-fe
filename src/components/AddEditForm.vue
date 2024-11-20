@@ -2,7 +2,9 @@
 import { useForm } from 'vee-validate';
 import { object, string } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
+import { useRoute } from 'vue-router';
 
+const emit = defineEmits(['create-event']);
 const props = defineProps({
     closeModal: {
         type: Function,
@@ -17,9 +19,10 @@ const validationSchema = toTypedSchema(
     object({
         name: string().required(),
         age: string().required(),
-        color: string().required()
+        colour: string().required()
     })
 );
+const route = useRoute();
 const { defineField, errors, handleSubmit, resetForm } = useForm({
     validationSchema,
     initialValues: { ...props.initialValue }
@@ -27,9 +30,11 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
 
 const [name, nameAttrs] = defineField('name');
 const [age, ageAttrs] = defineField('age');
-const [color, colorAttrs] = defineField('color');
+const [colour, colourAttrs] = defineField('colour');
 const emitCreate = handleSubmit((value) => {
-    console.log(value);
+    if(route.name === 'Unicorn-add'){
+        emit('create-event', value);
+    }
 });
 const resetAndClose = () => {
     resetForm();
@@ -50,8 +55,8 @@ const resetAndClose = () => {
         </div>
         <div class="flex flex-col gap-2">
             <label for="color">Color</label>
-            <InputText id="color" type="text" v-model="color" v-bind="colorAttrs" />
-            <span class="text-red-800">{{ errors.color }}</span>
+            <InputText id="color" type="text" v-model="colour" v-bind="colourAttrs" />
+            <span class="text-red-800">{{ errors.colour }}</span>
         </div>
         <div class="w-full flex justify-end align-middle gap-2">
             <Button outlined @click="resetAndClose">Cancel</Button>

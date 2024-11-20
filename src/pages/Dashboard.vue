@@ -1,5 +1,22 @@
 <script setup>
 import UnicornCard from '@/components/UnicornCard.vue';
+import { useUnicornStore } from '@/stores/unicorun.store';
+import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import PaginatonComponent from '@/components/PaginatonComponent.vue';
+
+const unicornStore = useUnicornStore();
+const { paginatedUnicorns } = storeToRefs(unicornStore);
+const handleDelete = (id) => {
+    unicornStore.proceedToDeleteUnicorn(id);
+};
+onMounted(() => {
+    unicornStore.getUnicorns();
+});
+const getVariant = (index) => {
+    const colors = ['red', 'green', 'blue'];
+    return colors[index % colors.length];
+};
 </script>
 <template>
     <div id="dashboard">
@@ -10,21 +27,7 @@ import UnicornCard from '@/components/UnicornCard.vue';
                 <Button> Create Unicorn</Button>
             </RouterLink>
         </div>
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
-        <UnicornCard />
-        <Paginator
-            :template="{
-                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'
-            }"
-            :rows="10"
-            :totalRecords="120"
-        >
-        </Paginator>
+        <UnicornCard v-for="(unicorn, index) in paginatedUnicorns" :key="unicorn._id" :unicorn="unicorn" :index="index" @delete-unicorn="handleDelete" :variant="getVariant(index)" />
+        <PaginatonComponent />
     </div>
 </template>
