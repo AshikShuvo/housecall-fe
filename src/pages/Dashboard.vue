@@ -1,7 +1,7 @@
 <script setup>
 import UnicornCard from '@/components/UnicornCard.vue';
 import { useUnicornStore } from '@/stores/unicorun.store';
-import { onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import PaginatonComponent from '@/components/PaginatonComponent.vue';
 
