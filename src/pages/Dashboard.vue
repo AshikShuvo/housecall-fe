@@ -17,12 +17,9 @@ import UnicornCard from '@/components/UnicornCard.vue';
         <UnicornCard />
         <Paginator
             :template="{
-                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
                 default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'
             }"
-            :rows="10"
+            :rows="5"
             :totalRecords="120"
         >
         </Paginator>

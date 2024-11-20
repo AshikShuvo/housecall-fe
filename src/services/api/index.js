@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useSiteStore } from '@/stores/site.store';
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL
+    baseURL: import.meta.env.VITE_API_BASEURL+import.meta.env.VITE_API_KEY
 });
 
 api.interceptors.request.use(
