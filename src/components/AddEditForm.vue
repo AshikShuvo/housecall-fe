@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from 'vee-validate';
-import { object, string } from 'yup';
+import { object, string, number } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 import { useRoute } from 'vue-router';
 import { computed } from 'vue';
@@ -19,7 +19,7 @@ const props = defineProps({
 const validationSchema = toTypedSchema(
     object({
         name: string().required(),
-        age: string().required(),
+        age: number().required(),
         colour: string().required()
     })
 );
